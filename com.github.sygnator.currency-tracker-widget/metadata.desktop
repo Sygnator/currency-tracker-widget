@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Currency tracker
+Comment=Currency tracker to take over the world!
+
+Type=Service
+Icon=battery
+X-KDE-ServiceTypes=Plasma/Applet
+
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+
+X-KDE-PluginInfo-Author=Sygnator
+X-KDE-PluginInfo-Email=mateusz@sygnator.com
+X-KDE-PluginInfo-Name=com.github.sygnator.currency-tracker-widget
+X-KDE-PluginInfo-Version=1
+X-KDE-PluginInfo-Website=https://github.com/Sygnator/currency-tracker-widget
+X-KDE-PluginInfo-Category=System Information
