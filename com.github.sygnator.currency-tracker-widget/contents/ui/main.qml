@@ -6,6 +6,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 ColumnLayout {
+    Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
+
     function getApiUrl(currencyFrom, currencyTo) {
         // yahoo finance - 500 request per day
         return "https://query1.finance.yahoo.com/v7/finance/spark?symbols=" + currencyFrom + currencyTo + "=X&range=1m";
