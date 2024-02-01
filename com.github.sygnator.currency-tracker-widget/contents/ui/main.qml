@@ -11,9 +11,9 @@ ColumnLayout {
     }
 
     function getSymbol(regularPrice, previousClose) {
-        if (regularPrice > previousClose) return "▲"
-        else if (regularPrice < previousClose) return "▼"
-        else return "−"
+        if (regularPrice > previousClose) return {symbol: "▲", color: "#0f0"} // green color
+        else if (regularPrice < previousClose) return {symbol: "▼", color: "#dd0404"} // red color
+        else return {icon: "−", colro: "white"}
 
     }
 
@@ -29,8 +29,11 @@ ColumnLayout {
                     var meta = res.spark.result[0].response[0].meta;
 
                     // Display currency exchange
-                    apiLabel.text = getSymbol(meta.regularMarketPrice, meta.previousClose) + " 1 " + currencyFrom + " - " + meta.regularMarketPrice + " " + currencyTo;
-                    console.log(meta.regularMarketTime)
+                    var exchangeSymbol = getSymbol(meta.regularMarketPrice, meta.previousClose);
+                    labelIcon.text = exchangeSymbol.symbol;
+                    labelIcon.color = exchangeSymbol.color;
+                    apiLabel.text = "1 " + currencyFrom + " - " + meta.regularMarketPrice + " " + currencyTo;
+                    console.log(meta.regularMarketTime);
 
                 } else {
                     // Handle errors
@@ -52,9 +55,16 @@ ColumnLayout {
     //     }
     // }
 
-    PlasmaComponents.Label {
-        id: apiLabel
-        text: i18n("Loading data...", makeApiRequest("USD", "EUR"))
+    RowLayout {
+        PlasmaComponents.Label {
+            id: labelIcon
+            text: i18n("")
+        }
+
+        PlasmaComponents.Label {
+            id: apiLabel
+            text: i18n("Loading data...", makeApiRequest("USD", "EUR"))
+        }
     }
 
     // Refresh every 5 minute
