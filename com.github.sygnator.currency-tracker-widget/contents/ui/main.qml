@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.0
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -35,9 +36,13 @@ ColumnLayout {
                     apiLabel.text = "1 " + currencyFrom + " - " + meta.regularMarketPrice + " " + currencyTo;
                     console.log(meta.regularMarketTime);
 
+                    // Restart timer to default value
+                    timer.interval = 600000;
+
                 } else {
                     // Handle errors
                     console.error("Error making API request:", xhr.status, xhr.statusText);
+                    timer.interval = 5000;
                 }
             }
         };
@@ -67,9 +72,10 @@ ColumnLayout {
         }
     }
 
-    // Refresh every 5 minute
+    // Refresh every 10 minute
     Timer {
-        interval: 300000
+        id: timer
+        interval: 600000
         running: true
         repeat: true
 
