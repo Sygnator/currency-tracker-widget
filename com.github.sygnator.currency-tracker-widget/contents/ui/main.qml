@@ -5,7 +5,12 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-ColumnLayout {
+Item {
+    // Window parameters
+    id: window
+    width: 120
+    height: 12
+    // Background transparency
     Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
 
     function getApiUrl(currencyFrom, currencyTo) {
@@ -63,14 +68,20 @@ ColumnLayout {
     // }
 
     RowLayout {
+        // Center text in window
+        anchors.centerIn: parent
+
         PlasmaComponents.Label {
             id: labelIcon
+            font.pixelSize: window.width / 12
             text: i18n("")
         }
 
         PlasmaComponents.Label {
             id: apiLabel
+            font.pixelSize: window.width/ 12
             text: i18n("Loading data...", makeApiRequest("USD", "EUR"))
+
         }
     }
 
