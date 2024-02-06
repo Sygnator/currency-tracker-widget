@@ -37,11 +37,13 @@ Item {
                     var meta = res.spark.result[0].response[0].meta;
 
                     // Display currency exchange
-                    var exchangeSymbol = getSymbol(meta.regularMarketPrice, meta.previousClose);
-                    labelIcon.text = exchangeSymbol.symbol;
-                    labelIcon.color = exchangeSymbol.color;
+                    if (Plasmoid.configuration.showIcon) {
+                        var exchangeSymbol = getSymbol(meta.regularMarketPrice, meta.previousClose);
+                        labelIcon.text = exchangeSymbol.symbol;
+                        labelIcon.color = exchangeSymbol.color;
+                    }
+
                     apiLabel.text = "1 " + currencyFrom + " - " + meta.regularMarketPrice + " " + currencyTo;
-                    console.log(meta.regularMarketTime);
 
                     // Restart timer to default value
                     timer.interval = 600000;
@@ -80,8 +82,7 @@ Item {
         PlasmaComponents.Label {
             id: apiLabel
             font.pixelSize: window.width/ 12
-            text: i18n("Loading data...", makeApiRequest("USD", "EUR"))
-
+            text: i18n("Loading data...", makeApiRequest(Plasmoid.configuration.exchangeFrom, Plasmoid.configuration.exchangeTo))
         }
     }
 
