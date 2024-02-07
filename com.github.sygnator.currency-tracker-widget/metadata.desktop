@@ -3,7 +3,7 @@ Name=Currency tracker
 Comment=Currency tracker to take over the world!
 
 Type=Service
-Icon=battery
+Icon=exchange-positions
 X-KDE-ServiceTypes=Plasma/Applet
 
 X-Plasma-API=declarativeappletscript
